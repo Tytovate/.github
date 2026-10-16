@@ -1,0 +1,75 @@
+# Reusable check for a decisions directory (team/0001, "Bevestiging"). Usage: decisions/README.md.
+name: decisions-check
+
+on:
+  workflow_call:
+    inputs:
+      dir:
+        description: Decisions directory in the caller repo, e.g. decisions or tyto-docs/adr
+        required: true
+        type: string
+      prefix:
+        description: Id prefix of this directory, e.g. team or paperclip
+        required: true
+        type: string
+      sources:
+        description: Extra homes for foreign vervangt ids, space-separated prefix=owner/repo:dir
+        required: false
+        type: string
+        default: ''
+    secrets:
+      token:
+        description: Optional read token for other (private) repos, to resolve foreign vervangt ids
+        required: false
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: decisions
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out caller
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Fetch PR base
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: git fetch --no-tags --depth=1 origin "$BASE_SHA"
+
+      - name: Check out decisions tools at this workflow's commit
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: ${{ job.workflow_repository }}
+          ref: ${{ job.workflow_sha }}
+          path: .decisions-tools
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          package-manager-cache: false
+
+      - name: Install
+        working-directory: .decisions-tools
+        run: npm ci --omit=dev --ignore-scripts
+
+      - name: Check
+        env:
+          DIR: ${{ inputs.dir }}
+          PREFIX: ${{ inputs.prefix }}
+          SOURCES: ${{ inputs.sources }}
+          GH_TOKEN: ${{ secrets.token }}
+          EVENT: ${{ github.event_name }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          args=(check --dir "$DIR" --prefix "$PREFIX" --sources "$SOURCES")
+          if [ "$EVENT" = pull_request ]; then
+            args+=(--base "$BASE_SHA" --base-ref "$BASE_REF" --default-branch "$DEFAULT_BRANCH")
+          fi
+          node .decisions-tools/decisions/cli.mjs "${args[@]}"

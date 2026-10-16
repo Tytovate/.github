@@ -1,0 +1,20 @@
+{
+  "name": "tytovate-decisions",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Check and index for Tytovate decision records (team/0001)",
+  "type": "module",
+  "bin": {
+    "decisions": "decisions/cli.mjs"
+  },
+  "scripts": {
+    "test": "node --test decisions/test/"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "yaml": "2.9.1"
+  }
+}
