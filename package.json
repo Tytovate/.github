@@ -12,7 +12,7 @@
     "decisions/lib.mjs"
   ],
   "scripts": {
-    "test": "node --test decisions/test/"
+    "test": "node --test 'decisions/test/*.test.mjs'"
   },
   "engines": {
     "node": ">=24"
