@@ -7,6 +7,10 @@
   "bin": {
     "decisions": "decisions/cli.mjs"
   },
+  "files": [
+    "decisions/cli.mjs",
+    "decisions/lib.mjs"
+  ],
   "scripts": {
     "test": "node --test decisions/test/"
   },
