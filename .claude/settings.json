@@ -1,0 +1,10 @@
+{
+  "extraKnownMarketplaces": {
+    "tytovate-plugins": {
+      "source": { "source": "github", "repo": "Tytovate/tytovate-plugins" }
+    }
+  },
+  "enabledPlugins": {
+    "tytovate-workflow@tytovate-plugins": true
+  }
+}
