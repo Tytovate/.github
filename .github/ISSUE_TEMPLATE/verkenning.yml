@@ -1,0 +1,30 @@
+name: Verkenning
+description: Een vraag die we onderzoeken; sluit met een uitkomst.
+type: Verkenning
+projects: ["Tytovate/4"]
+body:
+  - type: textarea
+    id: vraag
+    attributes:
+      label: De vraag
+      description: Wat willen we weten?
+    validations:
+      required: true
+  - type: textarea
+    id: waarom-nu
+    attributes:
+      label: Waarom nu
+      description: Welk besluit of werk wacht op het antwoord?
+    validations:
+      required: true
+  - type: dropdown
+    id: verwachte-uitkomst
+    attributes:
+      label: Verwachte soort uitkomst
+      description: Een verkenning sluit alleen met een uitkomst.
+      options:
+        - Sub-issues
+        - Een ADR
+        - Niets — met reden
+    validations:
+      required: true

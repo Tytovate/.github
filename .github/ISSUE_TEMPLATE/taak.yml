@@ -1,0 +1,20 @@
+name: Taak
+description: Een afgebakend stuk werk zonder nieuwe functionaliteit.
+type: Task
+projects: ["Tytovate/4"]
+body:
+  - type: textarea
+    id: doel
+    attributes:
+      label: Doel
+      description: Wat moet er gebeuren en waarom?
+    validations:
+      required: true
+  - type: textarea
+    id: klaar-als
+    attributes:
+      label: Klaar als
+      value: |
+        - [ ] 
+    validations:
+      required: true

@@ -1,0 +1,31 @@
+name: Epic
+description: Een samenhangend geheel van werk; de stappen hangen eronder als sub-issues.
+type: Epic
+title: "Epic: "
+projects: ["Tytovate/4"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > [!NOTE]
+        > Status staat op het bord (project #4), nooit in deze tekst.
+  - type: textarea
+    id: waarom
+    attributes:
+      label: Waarom
+    validations:
+      required: true
+  - type: textarea
+    id: acceptatie
+    attributes:
+      label: Wat waar moet zijn als het af is
+      value: |
+        - 
+    validations:
+      required: true
+  - type: textarea
+    id: buiten-scope
+    attributes:
+      label: Wat er buiten valt
+    validations:
+      required: true
