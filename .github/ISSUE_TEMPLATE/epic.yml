@@ -1,5 +1,5 @@
 name: Epic
-description: Een samenhangend geheel van werk; de stappen hangen eronder als sub-issues.
+description: Een programma — een groot stuk werk met acceptatie, invarianten en besluiten; de stappen hangen eronder als sub-issues.
 type: Epic
 title: "Epic: "
 projects: ["Tytovate/4"]
@@ -8,21 +8,46 @@ body:
     attributes:
       value: |
         > [!NOTE]
-        > Status staat op het bord (project #4), nooit in deze tekst.
+        > Status staat op het bord (project #4), nooit in deze tekst. Elke stap is een sub-issue van dit epic.
   - type: textarea
     id: waarom
     attributes:
       label: Waarom
+      description: Het doel, en wat de code niet vertelt — beperkingen, kosten, wat nu tekortschiet.
     validations:
       required: true
   - type: textarea
+    id: artefacten
+    attributes:
+      label: Artefacten
+      description: Besluiten, repo's, docs en eerder werk waar dit op bouwt.
+      value: |
+        -
+  - type: textarea
     id: acceptatie
     attributes:
-      label: Wat waar moet zijn als het af is
+      label: Acceptatie
+      description: Wat waar moet zijn als het hele programma geland is; één toetsbare zin per regel.
       value: |
-        - 
+        - **A1**
     validations:
       required: true
+  - type: textarea
+    id: invarianten
+    attributes:
+      label: Invarianten
+      description: Wat tijdens het hele programma moet blijven gelden, ook voor elke stap.
+      value: |
+        -
+    validations:
+      required: true
+  - type: textarea
+    id: besluiten
+    attributes:
+      label: Besluiten
+      description: Per besluit de vraag, de keuze (wie, datum) en wat het uitsluit.
+      value: |
+        - **<vraag>?** → <keuze> (<wie>, <datum>). *Sluit uit:* <wat niet>.
   - type: textarea
     id: buiten-scope
     attributes:
