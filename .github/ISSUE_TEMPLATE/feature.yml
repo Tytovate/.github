@@ -1,0 +1,21 @@
+name: Feature
+description: Nieuwe functionaliteit of een verbetering die iets oplevert.
+type: Feature
+projects: ["Tytovate/4"]
+body:
+  - type: textarea
+    id: doel
+    attributes:
+      label: Doel
+      description: Wat moet er kunnen, voor wie, en waarom?
+    validations:
+      required: true
+  - type: textarea
+    id: acceptatiecriteria
+    attributes:
+      label: Acceptatiecriteria
+      description: Wat aantoonbaar waar is als dit af is.
+      value: |
+        - [ ] 
+    validations:
+      required: true

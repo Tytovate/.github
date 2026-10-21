@@ -1,0 +1,34 @@
+name: Bug
+description: Iets werkt niet zoals het hoort.
+type: Bug
+projects: ["Tytovate/4"]
+body:
+  - type: textarea
+    id: wat-gebeurt-er
+    attributes:
+      label: Wat gebeurt er?
+      description: Foutmelding, gedrag of schermafbeelding.
+    validations:
+      required: true
+  - type: textarea
+    id: wat-had-moeten-gebeuren
+    attributes:
+      label: Wat had er moeten gebeuren?
+    validations:
+      required: true
+  - type: textarea
+    id: stappen
+    attributes:
+      label: Stappen
+      description: Hoe krijgt iemand anders dit te zien?
+      value: |
+        1. 
+    validations:
+      required: true
+  - type: input
+    id: waar
+    attributes:
+      label: Waar
+      description: Omgeving, URL, versie of commit.
+    validations:
+      required: true
